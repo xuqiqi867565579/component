@@ -1,0 +1,140 @@
+@mixin sizing { //box-sizing 盒子挤压
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@mixin absolute($direction) { //定位
+    position: $direction;
+}
+@mixin wh($width,$height) {
+    width:$width;
+    height: $height;
+}
+
+@mixin border1px($direction: 'bottom') {
+    &::after {
+        content: '';
+        @include wh(200%,1px);
+        transform-origin: left top;
+        transform: scale(0.5);
+        background: $border-color-base;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+// 单行文本省略
+@mixin singleText($width){
+    display:block;
+    overflow: hidden;
+    text-overflow:ellipsis; // 文本溢出显示省略号
+    white-space:nowrap; // 文本不会换行（单行文本溢出）
+    width:$width;
+}
+
+@mixin doubleText($width){
+    text-overflow: ellipsis; //可以用来多行文本的情况下，用省略号“…”隐藏超出范围的文本 。
+    overflow : hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    width:$width;
+}
+
+@mixin hidden {
+    overflow: hidden;
+}
+
+@mixin center($center) {
+    text-align: $center;
+}
+
+@mixin box_flex{
+    display: flex;
+    /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    display: -webkit-flex;
+    /* NEW - Chrome */
+    // -webkit-justify-content: $justify;
+    // justify-content: $justify;
+    // -webkit-align-items: $align;
+    // align-items: $align;
+}
+
+@mixin flex($direction:column){
+    flex-direction: $direction;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    text-align: center;
+}
+
+// @mixin box_flex ($justify,$align) {
+//     display: flex;
+//     /* NEW, Spec - Opera 12.1, Firefox 20+ */
+//     display: -webkit-flex;
+//     /* NEW - Chrome */
+//     -webkit-justify-content: $justify;
+//     justify-content: $justify;
+//     -webkit-align-items: $align;
+//     align-items: $align;
+// }
+
+@mixin direction ($dir:row) {
+    // 设置弹性盒子方向
+    -webkit-flex-direction: $dir;
+    flex-direction: $dir;
+}
+
+@mixin flexWrap ($wrap) {
+    -webkit-flex-wrap: $wrap;
+    flex-wrap: $wrap;
+}
+
+@mixin flexFlow ($dir:row, $wrap:wrap) {
+    // 方向和换行的结合体
+    -webkit-flex-flow: $dir $wrap;
+    flex-flow: $dir $wrap;
+}
+
+@mixin justify ($justify:center) {
+    // 水平居中
+    -webkit-justify-content: $justify;
+    justify-content: $justify;
+}
+
+@mixin align ($align:center) {
+    // 垂直居中
+    -webkit-align-items: $align;
+    align-items: $align;
+}
+
+// @mixin flex ($grow: 1, $shrink: 1, $basis: 0%) {
+//     // 
+//     -webkit-flex: $grow $shrink $basis;
+//     flex: $grow $shrink $basis;
+// }
+
+@mixin flex_grow($val) {
+    -webkit-flex-grow: $val;
+    flex-grow: $val;
+}
+
+@mixin flex_shrink($val) {
+    -webkit-flex-shrink: $val;
+    flex-shrink: $val;
+}
+
+@mixin flex_basis($val) {
+    -webkit-flex-basis: $val;
+    flex-basis: $val;
+}
+// @mixin wh($w,$h) {
+//     width:$h;
+//     height:$h
+// }
+// @mixin flex(){
+//     display:flex;
+// }
